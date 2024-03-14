@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div.main
+    nav
+        a(href=category.createThreadUrl) start a new thread
+        a(href=category.updateUrl) update category
+    if thread_list.length
+        div.thread-list
+            each thread in thread_list
+                div.list-thread
+                    a(href=category.url+thread.url) #{thread.title}
+                    p #{thread.text}
+    else
+        p threads not found

@@ -1,0 +1,46 @@
+
+extends layout
+
+block content
+  h1.window-title #{title}
+  form(method='POST')
+    div.form
+        p
+            label(for='category') category:
+            select#category(
+                name='category'
+                required
+            )
+                option(value='') --select category--
+                for instance in category_list
+                    if category
+                        if instance._id.toString() === category._id.toString()
+                            option(value=instance._id selected) #{instance.name}
+                        else
+                            option(value=instance._id) #{instance.name}
+                    else
+                        option(value=instance._id) #{instance.name}
+        p
+            label(for='title') thread title:
+            input#title(
+                type='text'
+                placeholder='enter title'
+                name='title'
+                required
+                value=(undefined===thread? '' : thread.title)
+            )
+        p
+            label(for='text') content:
+            textarea#text(
+                name='text'
+                cols='30'
+                rows='5'
+                required
+                value=(undefined===thread? '' : thread.text)
+            )
+        p
+            button(type='submit') submit
+        if errors
+            ul
+                for error in errors
+                    li!= error.msg

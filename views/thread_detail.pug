@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  div.main
+    div.thread
+        p #{thread.title}
+        p #{thread.text}
+    h2 post a reply
+    form(method='POST')
+        div.comment-form
+            textarea(
+                name="text", cols="30", rows="3" required
+            )
+            button(type='submit') submit
+    if comment_list.length
+        div.comments
+            each comment in comment_list
+                div.comment
+                    p #{comment.time}
+                    p #{comment.text}
+    else
+        p comments not found

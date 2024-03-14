@@ -1,0 +1,31 @@
+
+extends layout
+
+block content
+  h1.window-title #{title}
+  form(method='POST')
+    div.form
+        p
+            label(for='name') category name:
+            input#name(
+                type='text'
+                placeholder='category name'
+                name='name'
+                value=(undefined===category? '' : category.name)
+                required
+            )
+        p
+            label(for='description') description:
+            textarea#description(
+                name='description'
+                cols='30'
+                rows='5'
+                value=(undefined===category? '' : category.description)
+                required
+            )
+        p
+            button(type='submit') submit
+        if errors
+            ul
+                for error in errors
+                    li= error.msg
