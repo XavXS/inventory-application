@@ -2,7 +2,7 @@ const Thread = require('../models/thread');
 const Category = require('../models/category');
 const Comment = require('../models/comment');
 const asyncHandler = require('express-async-handler');
-const { body, check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 exports.thread_list_get = asyncHandler(async(req, res, next) => {
     const category = await Category.findOne({ name: req.params.category }).exec();
